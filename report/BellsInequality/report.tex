@@ -1,0 +1,422 @@
+\documentclass[letter,scriptaddress,twocolumn, prl, nofootinbib]{revtex4}
+
+	\usepackage{amsmath}%,amssymb} 
+	\usepackage{makeidx}
+	\usepackage{amsfonts}
+	\usepackage[ansinew]{inputenc}
+	\usepackage[usenames,dvipsnames]{pstricks}
+	\usepackage{subfigure}
+	\usepackage{epsfig}
+	\usepackage{pst-grad} % For gradients
+	\usepackage{pst-plot} % For axes
+    \usepackage{gensymb}
+    \usepackage{float}
+    \usepackage[colorlinks,hyperindex]{hyperref}
+    \usepackage{todonotes}
+	\hypersetup
+	{
+		colorlinks,%
+		citecolor=red,%
+		linkcolor=red,%
+		urlcolor=red,%
+	}
+
+%--- Definindo algumas frescuras.
+%\numberwithin{equation}{subsection}
+	%\numberwithin{equation}{section}
+
+	\setlength\textheight{24.5cm}
+
+% --- Comandos novos ---
+	\newcommand{\dket}[1]{\left| #1 \right)}
+	\newcommand{\E}[1]{\frac{\hbar^2 #1 ^2}{2m_0}}
+	\newcommand{\dbra}[1]{\left( #1 \right|}
+	\newcommand{\dsubmin}[1]{\left( #1 \right)}
+	\newcommand{\dbraket}[2]{\left( #1 | #2 \right)}
+	\newcommand{\dbraketm}[3]{\left( #1 \left| #2 \right| #3 \right)}
+	\newcommand{\ket}[1]{\left| #1 \right\rangle}
+	\newcommand{\bra}[1]{\left\langle #1 \right|}
+	\newcommand{\submin}[1]{\left\langle #1 \right\rangle}
+	\newcommand{\braket}[2]{\left\langle #1 \right. \left| #2 \right\rangle}
+	\newcommand{\braketm}[3]{\langle #1 \mid #2 \mid #3 \rangle}
+	\newcommand{\pinterno}[2]{\left( #1 , #2 \right)}
+	\newcommand{\comut}[2]{\left[ #1 , #2 \right]} % THE COMUTATOR
+	\newcommand{\seitz}[2]{\left\{ \, #1 \mid  #2 \, \right\}}
+	\newcommand{\rep}{\emph{rep} }
+	\newcommand{\irep}{\emph{irrep} }
+	\newcommand{\ordem}[1]{\mid #1 \mid}
+	\newcommand{\op}[1]{\mathbb #1 }
+	\newcommand{\group}[1]{\mathcal #1 }
+	\newcommand{\vet}[1]{\mathbf #1 }
+	\newcommand{\argu}[1]{\left( #1 \right)}
+	\newcommand{\kp}{\vet{k}\cdot\vet{p}}
+	\newcommand{\rcs}{\chi_\nu^2}
+    \newcommand{\set}[1]{\left\{ #1 \right\}}
+    \let\oldsim\sim 
+    \renewcommand{\sim}{{\oldsim}}
+
+	
+\makeindex
+
+%--------------------------------------------------------
+\begin{document}
+
+\title{An Experimental Violation of Bell's Inequality}
+
+\author{Andr\'{e}s E. Luengo}
+\email{andres.luengo@yale.edu}
+\author{Max C. Watzky}
+\email{max.watzky@yale.edu}
+\author{Alden J. Yorba} 
+\email{alden.yorba@yale.edu}
+
+\affiliation{Yale University \\ New Haven, CT 06511}
+
+\date{\today}
+
+\begin{abstract}
+The Copenhagen interpretation of quantum mechanics is inherently nonlocal, since the collapse of a wave function can transmit information instantly across vast distances. After Einstein, Podolsky, and Rosen presented this paradox, a theory of ``hidden variables'' was posited by Bohm (1952) to restore locality to quantum mechanics and forbid the transmission of information at faster-than-light speeds. Bell's Theorem provides an experimental way of differentiating the two theories. We provide evidence against the existence of hidden variables by violating a version of Bell's inequality using a tabletop apparatus. We generate entangled photon pairs using a BBO crystal, and pass each through a set of polarizers in order to collapse their wave functions. We use coincident counts at two detectors to calculate  the agreement rates $E$ at a set of four angle pairs, and use them to determine the Clauser-Horne-Shimony-Holt value $S$. We find $S = 2.75 \pm 0.04$, which is inconsistent with $|S| \le 2$ required by any hidden variables theory.
+
+\end{abstract}
+
+\keywords{Bell's Theorem, CHSH Inequality, Quantum Mechanics, Quantum Nonlocality, Einstein-Podolsky-Rosen Paradox}
+
+\maketitle
+
+\section{Introduction}
+\subsection{Background}
+\indent Students of quantum mechanics often struggle to grasp its probabilistic nature. A quantum mechanical wavefunction does not definitively encode a particle's position, spin, polarization, or any other quantity, but merely describes the probability of different values being observed. The most widely accepted interpretation of quantum mechanics, the so-called Copenhagen school popularized by Bohr, Heisenberg, and others, posits that particles do not physically possess these quantities at all. Rather, they exist in a superposition of all possible states, and the act of measurement forces the wavefunction to instantaneously ``collapse'' to a value. \\ 
+\indent However, this interpretation of quantum mechanics leads to seemingly nonsensical conclusions. One particularly striking example comes from the phenomenon of quantum entanglement. If two particles are entangled, the collapse of the first particle's wavefunction instantly collapses the second, no matter the distance between them. Entanglement is often physically necessary to conserve quantities like energy, momentum, or spin, and occurs commonly in nature (for instance, when a spin-zero particle decays into two spin-1/2 particles). However, Einstein's theory of relativity forbids physical influences from traveling faster than the speed of light. Einstein, Podolsky, and Rosen first presented this paradox in 1935 as part of a broader attack on the Copenhagen interpretation of quantum mechanics. Over the coming decades, some theorists like Bohm (1952) would attempt to explain this paradox by positing that the properties of particles are indeed deterministic, but governed by a set of inaccessible ``hidden variables.''
+
+In a seminar paper, Bell (1964) presented a theorem that any hidden variables theory would make testable predictions for entangled objects that disagree with the predictions from orthodox quantum mechanics. In 1972, John Clauser performed the first test of Bell's theorem, and used the result to rule out hidden variables. A set of later experiments would confirm Clauser's finding, and Clauser, Alain Aspect, and Anton Zeilinger won the 2022 Nobel Prize in Physics for this achievement. In this experiment, we carry out a test of Bell's inequality similar to the Nobel Prize-winning work using entangled photon pairs. In \hyperref[subsec:theory]{Theory}, we outline the physical theory of the experiment. In \hyperref[sec:apparatus]{Apparatus}, we describe our tabletop setup. In \hyperref[sec:methods]{Methods}, we discuss the calibration of the apparatus, our measurement technique, our model fitting tools, and error propagation. We present the data in \hyperref[sec:results]{Results}, elaborate on our findings in \hyperref[sec:discussion]{Discussion}, and discuss implications in \hyperref[sec:discussion]{Conclusions}.
+
+
+\subsection{Theory}
+\label{subsec:theory}
+
+\subsubsection{Entangled Photons}
+% Suppose there is a quantum system with two photons, \textit{signal} and \textit{idle}. Photons pumped into  the crystal apparatus in this experiment have a state of 
+Consider a \textit{pump} photon in the following state:
+
+\begin{equation}
+\ket{\psi}_p = \frac{1}{\sqrt{2}} \left( e^{i \phi_l}\sin(\theta_l)\ket{H}_p + \cos(\theta_l) \ket{V}_p\right)
+\label{eq:incident_photon}
+\end{equation}
+
+$\ket{V}$ represents the state in which a photon is vertically polarized, while $\ket{H}$ represents the state with horizontal polarization. 
+
+The pump photon is passed through two crystal plates, with one rotated 90$^\circ$ from the other so that they operate separately on vertically and horizontally polarized photons. This produces two entangled photons, which we will call \textit{signal} and \textit{idler}. In particular, the state of a vertically polarized pump photon passing through the crystal plates will be converted as $\ket{\psi}_p = \ket{V} \rightarrow \ket{\psi}_{em} = \ket{H}_s\ket{H}_i$ while a horizontally polarized state will be transformed as $\ket{\psi}_p = \ket{H} \rightarrow \ket{\psi}_{em} = e^{i \Delta} \ket{V}_s \ket{V}_i$ where the phase $\Delta$ is introduced due to properties of the crystal.
+
+Therefore, based on \autoref{eq:incident_photon}, a pump photon passing through the crystals will emerge in the state\cite{dehlinger_entangled_2002-1}:
+
+\begin{equation}\label{eq:entangledstate}
+    \ket{\psi}_{em} = \cos(\theta_l)\ket{H}_s\ket{H}_i + e^{i \phi_l}\sin(\theta_l)\ket{V}_s\ket{V}_i
+\end{equation}
+
+Importantly, $\theta_l$ can be adjusted by adjusting the angle of the splitting crystals, while $\phi_l$ can be adjusted by changing the micrometer screw on the Soleil-Babinet Compensator (which introduces a phase delay between the two states \cite{moyer_bells_2014}.) By setting $\theta_l$ to 45$^\circ$, and adjusting $\phi_l$ until the phase difference goes away, it is possible to emit entangled photons with equal probabilities of being horizontally or vertically polarized:
+
+\begin{equation}\label{eq:balentstate}
+    \ket{\psi}_{em} = \frac{1}{\sqrt{2}} \left( \ket{V}_s\ket{V}_i+\ket{H}_s\ket{H}_i\right)
+\end{equation}
+
+The polarizers placed in front of detectors $A$ and $B$ are oriented at angles $\alpha$ and $\beta$ respectively. The vertical and horizontal bases from the polarizer's perspective are then:
+
+\begin{align}
+    \label{eq:rotated_bases}
+    \ket{V_\alpha} = \cos{\alpha}\ket{V}-\sin{\alpha}\ket{H} \\
+    \ket{H_\alpha} = \sin{\alpha}\ket{V}+\cos{\alpha}\ket{H}
+\end{align}
+
+
+
+In this experiment, the photons are measured with respect to the vertical, and the measurement bases of $\ket{V_\alpha}$ for detector $A$ and $\ket{V_\beta}$ for detector $B$ are chosen. Therefore, a coincidence is given by the inner product of the entangled state $\ket{\psi}_{em} = \frac{1}{\sqrt{2}} \left( \ket{V}_s\ket{V}_i+\ket{H}_s\ket{H}_i\right)$ onto the measurement basis of $\bra{V_\alpha, V_\beta}$. This gives the probability of coincidences (both photons observed to have vertical polarizations with respect to their polarizer) to be: 
+
+\begin{align}
+\label{eq:prob_expression}
+    \mathbb{P}_{VV}(\alpha, \beta) &= \sin^2(\alpha)\sin^2(\beta)\cos^2(\theta_l) \notag \\ &+\cos^2(\alpha) \cos^2(\beta)\sin^2(\theta_l) \notag \\ &+ \frac{1}{4} \sin(2\alpha)\sin(2\beta)\sin(2 \theta_l)\cos(\phi_m)
+\end{align}
+To find the number of counts in a given period of time, we simply scale the probability by a constant, and add a second constant to account for a background rate:
+\begin{align}
+N(\alpha, \beta)=A\mathbb{P}_{VV}(\alpha, \beta) + C
+\end{align}
+
+
+
+\subsubsection{Bell's Theorem and the CHSH Inequality}
+In this experiment, we use an extension of Bell's Theorem, published by Clauser, Horne, Shimony, and Holt in 1969, which applies to the case of two entangled photons at dual polarizers. Consider a metric of the ``correlation'' between the two polarizers, set to angles $\alpha$ and $\beta$. This metric should be maximized at $+1$ when both photons are found to be identically vertically polarized or horizontally polarized. Conversely, this metric should be minimized at $-1$ when one photon is always found to be horizontally polarized, and the other is vertically polarized. One such metric is:
+\begin{align}
+    \label{eq:e_expression}
+    E(\alpha, \beta)  = \mathbb{P}_{VV}(\alpha, \beta) + \mathbb{P}_{HH}(\alpha, \beta)  \notag \\ - \mathbb{P}_{VH}(\alpha, \beta) - \mathbb{P}_{HV}(\alpha, \beta)
+\end{align}
+The experimental estimator for $E$ simply uses $N$ instead of $\mathbb{P}$, and normalizes by dividing out by the total number of counts. The $V$ and $H$ configurations can be measured by adjusting $\alpha$ or $\beta$ by $90^\circ$. When an angle $\theta$ is tilted by $90^\circ$, we henceforth describe it using the notation $\theta_{\perp}$. Therefore, the experimental estimator is written:
+\begin{align}
+    \label{eq:E_exp_estimator}
+    E(\alpha, \beta) &= [N(\alpha, \beta) + N(\alpha_\perp, \beta_\perp) \\
+    &- N(\alpha, \beta_\perp) - N(\alpha_\perp, \beta)] /N_{tot}
+\end{align}
+Now consider any deterministic model of quantum mechanics that preserves locality, using a hidden variable  $\lambda$. We define the functions:
+\begin{align}
+    A: \alpha, \lambda \to \set{-1, 1} \notag \\
+    B: \beta, \lambda \to \set{-1, 1}
+\end{align}
+to describe the deterministic outcomes of a measurement at polarizers A or B, given $\lambda$ and the polarizer angle. We allow $\lambda$ to be randomly distributed over $\mathbb{R}$, with distribution $\rho(\lambda)$. Then, we may calculate the measurement correlation $E$ as follows:
+\begin{align}
+    E(\alpha,\beta) = \int_{\lambda} A(\alpha, \lambda)B(\beta, \lambda) \rho(\lambda)d \lambda
+\end{align}
+With clever knowledge of the possible outputs of $A$ and $B$, and straightforward application of the triangle inequality, the following identity can be derived \cite{dehlinger_entangled_2002}:
+\begin{align}
+    \label{eq:S_expression}
+     |E(\alpha, \beta) - E(\alpha, \beta') + E(\alpha', \beta) + E(\alpha', \beta')| \le 2
+\end{align}
+where $\alpha, \beta, \alpha', \beta'$ are four distinct polarizer angles. Henceforward, we denote the left hand side of this expression as the CHSH value $S$. To rule out a hidden variables theory, we need only take a measurement:
+\begin{align}
+    |S| > 2
+\end{align}
+
+Through straightforward maximization of \autoref{eq:S_expression} using the prediction from quantum mechanics in \autoref{eq:prob_expression}, we find that the maximum value of $S$ is predicted to be $2 \sqrt{2}$, given by the polarizer angles:
+
+\begin{align}
+    &\alpha= -45\degree  \notag \\ 
+    &\beta = -22.5\degree \notag\\ 
+    &\alpha' = 0\degree\notag \\ 
+    &\beta' = 22.5\degree 
+\end{align}
+In order to maximize statistical power in our experiment, we adopt these values for $\alpha, \beta, \alpha', \beta'$.
+
+\section{Apparatus}
+\label{sec:apparatus}
+The experimental apparatus generates entangled photon pairs, passes them through dual polarizers, and measures simultaneous detections using a set of single photon counting modules (SPCMs). A diagrammatic illustration of the setup is shown in \hyperref[fig:simple_apparatus]{Figure 1}.
+The photons are initially produced with uniform horizontal polarization using a laser diode. The polarized light then passes through a Babinet-Soliel compensator, which can be adjusted using a micrometer screw. As discussed in \hyperref[eq:entangledstate]{Theory}, the Babinet-Soliel compensator introduces a phase difference between the horizontal and vertical components.
+
+\begin{figure}%[H]
+    \includegraphics[width=1.0\linewidth]{Phys4450/BellsInequality/figs/BellApparatus.png}
+    \label{fig:simple_apparatus}
+    \caption{Diagram of the apparatus used to split photons into entangled pairs \cite{moyer_bells_2014}}
+\end{figure}
+
+Subsequently, the photons pass through a beta-barium borate (BBO) crystal. While most of the photons do not interact with the crystal, some undergo a process known as spontaneous downconversion. In this process, the high energy pump photon from the laser diode is converted into two lower energy photons, known as the signal and idler photons. Notably, both photons must emerge with the same polarization, which are orthogonal to the original polarization. The BBO crystal axes are rotated $45^\circ$ to horizontal in order to ensure a superposition of states is always produced. The signal and idler photons emerge as diffuse cones of light, which are passed through two adjustable polarizers, labeled $A$ and $B$ in accordance with the discussion in \hyperref[subsec:theory]{Theory}. These polarizers perform the role of quantum mechanical measuring devices, collapsing the wavefunction of each photon along their respective axes. Finally, a set of two SPCMs measure the number of photons that pass through each polarizer. While all of our experimentation was performed with the overhead lights off and the door closed, a series of filters were used at this stage to block any stray photons. The signal from the SPCMs is passed to a control panel, where analysis is performed to detect simultaneous counts. The control panel allows for an adjustable delay $\tau$ from -70 to 70ns between SPCM A and B to be introduced. The setup counts a coincidence whenever two signals arrive within some window of time $\delta$ of each other.
+
+% A delay of $\tau$ is expected between the counts, with an error tolerance of $\delta$. While $\tau$ can be adjusted, $\delta$ is inherent to the system. This feature of the apparatus is discussed further in \hyperref[subsec:delay]{Polarizer Delay Time}.
+
+The coincident counts can be read out in two ways: either on the control panel display, where they are read at $1$ second intervals, or using a MATLAB script \cite{luengo_andres-luengoalden-andres-max-most-dangerous-4450-trio_2026}, which can integrate coincident counts over a whole number of seconds.
+
+
+\section{Methods}
+\label{sec:methods}
+\subsection{Calibration}\label{sec:calibration}
+
+\subsubsection{BBO and Babinet-Soliel Alignment}\label{subsubsec:prealignment}
+In order to get an entangled state with equal magnitude in $\ket{V}_s\ket{V}_i$ and $\ket{H}_s\ket{H}_i$ (e.g. \autoref{eq:balentstate}), we first set the BBO crystal angle $\theta_l$ such that we have $N(-45\degree,-45\degree) \approx N(45\degree,45\degree)$. We accomplish this using a manual binary search algorithm. We alternate between measuring $N$ using the control panel display at each of the angle pairs, and adjust the BBO angle slightly to reduce the difference at each step. We repeat this process until the two count rates are indiscernible. 
+In order to eliminate the phase difference between the $\ket{V}_s\ket{V}_i$ and $\ket{H}_s\ket{H}_i$ states, we perform a nearly identical process to adjust the Babinet-Soliel compensator, aiming instead to have $N(0\degree, 0\degree) \approx N(90\degree, 90\degree)$  and adjusting the micrometer screw towards $\phi_l = 0$.
+
+\subsubsection{Polarizer Delay Time}
+\label{subsec:delay}
+Microscopic differences between the path lengths from the BBO crystal to the corresponding SPCM for a signal and idler photon originating from the same pump photon can result in a measurable difference between arrival times. The control panel introduces an adjustable delay $\tau$ between measurements in order to account for this difference. To characterize the effect of $\tau$ on the coincident count rate, we set both polarizers to $0\degree$ and measured coincident count rates using the control panel display as a function of delay time. We assume that our uncertainty is dominated Poisson statistics, so we take the uncertainty of our count rate $n$ to be $\sqrt{n} \ \text{s}^{-1}$. The data is plotted in \autoref{fig:tau_data}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\linewidth]{Phys4450//BellsInequality//figs/tau_data.png}
+    \caption{Coincident count rates with both polarizers set at $0\degree$ as a function of delay time between signal from polarizers A and B.}
+    \label{fig:tau_data}
+\end{figure}
+
+The data follows a plateau shape, jumping up to $\sim 2000$ counts per second at $\sim 2$ns of delay and staying roughly constant there until it drops down to background levels at $\sim35$ns.  This implies that a delay time anywhere in the plateau allows for coincident counts to be registered properly. We arbitrarily choose a delay of $18.40$ns, which sits near the center of this range.
+
+\subsubsection{Polarizer Calibration}\label{subsubsec:polarizer_axes}
+Subsequently, we verified that the coincident counts at polarizers $A$ and $B$ obey the prediction from quantum mechanics in \autoref{eq:prob_expression}. We fix $\theta_A = 0^\circ$ and measure the coincident count rate at different values of $\theta_B$ by integrating a measurement over $10$ seconds. In accordance with Poisson statistics, we took the uncertainty for $n$ counts to be $\sqrt{n}$. In accordance with \autoref{eq:prob_expression}, we expect the data to fit the following model:
+\begin{equation} \label{eq:correlation}
+    \hat{N}(\theta_B)=A\cos\left(2\theta_B + \phi\right) + B.
+\end{equation}
+where  $\phi$ is expected to be $0$.
+In order to get estimates of the parameters with confidence bounds, we proceeded as follows: we first performed a fit using \texttt{curve\_fit} from the Python \texttt{scipy.optimize} package \cite{virtanen_scipy_2020}. Then, we estimated the uncertainties of the parameters with the Markov Chain Monte Carlo (MCMC) method implemented in the Python \texttt{emcee} package \cite{foreman-mackey_emcee_2013}. We assumed a prior distribution on the parameters that disallows negative values of $A$ and $B$, since count rate must be strictly positive. We use the notation $\boldsymbol{\theta}$ to refer to the collection of model parameters $\set{A, B, \phi}$.
+\begin{equation}\label{eq:mod_prior}
+\begin{matrix}
+    \ln(p(\boldsymbol{\theta})) = \begin{cases}
+        0 & \text{A, B} > 0 \\
+        -\infty & \text{otherwise}
+    \end{cases}
+\end{matrix}
+\end{equation}
+Then, we defined the likelihood of the data, conditioned on the model parameters $\boldsymbol{\theta}$ to be:
+\begin{align}
+    \ln(p(\mathbf{N} | \boldsymbol{\theta}))&= -\sum_i^n\frac{(\hat{N}_i(\theta_i)-N_i)^2}{\sigma_{i}^2}.
+\end{align}
+At each step in the MCMC algorithm, values of $\boldsymbol{\theta}$ are chosen randomly from the posterior distribution. We iteratively sampled in this manner until $\boldsymbol{\theta}$ converged in distribution. Thanks to the theory of the algorithm, we are reasonably guaranteed that the fluctuations in the Markov Chain approximate the true uncertainty of $\boldsymbol{\theta}$ in the long-chain limit.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1\linewidth]{Phys4450//BellsInequality//figs/residual_plot.png}
+    \caption{\textbf{Upper Plot:} Data for coincident counts vs. angle of polarizer B overlaid on 100 samples of $\boldsymbol{\theta}$ from the MCMC posterior. \textbf{Lower Plot:} Residual plot assuming model with median MCMC chain value for each parameter.}
+    \label{fig:countrate}
+\end{figure}
+
+The optimal model $\boldsymbol{\theta}^\star$ are given by the median of the chain. The data, optimal model, and residuals are shown in \autoref{fig:countrate}. The model has $\chi_\nu^2 = 6.7895$, implying significant disagreement with the data. While many of the data points fit within standard uncertainties, a few measurements at low values of $\theta_B$ are inconsistent with the model. This might be explained by suboptimal alignment of the BBO axis and the Babinet-Soliel compensator, which is reasonable given that calibration was performed by hand. Alternatively, there may be other sources of error in the SPCM measurements besides Poisson count noise. Regardless, for the rest of our analysis, we scale all count uncertainties by $\sqrt{\rcs}$.
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{2cm}p{2cm}}
+\hline
+\hline
+$\theta$ & Value \\
+\hline
+$A$ & $\ 674.3 \pm 4.7$ \\ 
+$B$ & $ \ 812.6 \pm 3.7$ \\
+$\phi$ & $-1.50 \pm 0.40$ \\
+\hline
+\hline
+\end{tabular}
+    \caption{Final model parameters and $1\sigma$ uncertainties from MCMC, after uncertainty rescaling.}
+    \label{tab:model_params}
+\end{table}
+
+
+We repeat the posterior sampling with the rescaled uncertainties. \autoref{fig:mcmc_crater_plot} shows the distribution of the posterior samples. The values and uncertainties of the optimal model parameters are given in \autoref{tab:model_params}. Using these parameters, we estimate the background rate to be (with $1\sigma$ uncertainty):
+\begin{equation}
+    \label{eq:background_rate}
+    \beta = B-A  \approx 138.5 \pm 6.0  \ \text{counts}/\text{s}
+\end{equation}
+This value is tantamount to the rate of photon coincidences with the polarizers crossed, i.e at an $90^\circ$ angle.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Phys4450//BellsInequality//figs/mcmc_corner_plot.png}
+    \caption{\textbf{Upper Plot:} Data for coincident counts vs. angle of polarizer B overlaid on 100 samples of $\boldsymbol{\theta}$ from the MCMC posterior. \textbf{Lower Plot:} Residual plot assuming model with median MCMC chain value for each parameter.}
+    \label{fig:mcmc_crater_plot}
+\end{figure}
+
+
+\subsection{Data Collection}
+
+
+A total of sixteen measurements were taken over angles for polarizer A $\left(\alpha, \alpha^\prime, \alpha_\perp, \alpha_\perp^\prime \right)$ and Polarizer B $\left( \beta, \beta^\prime, \beta_\perp, \beta_\perp^\prime \right)$. Each measurement consisted of a ten-second data collection during which total counts for detector A, B, and coincident counts were recorded. The elapsed time (which differed slightly from ten seconds) was also recorded as a function of detector clock ticks per collection window. As described in \hyperref[sec:apparatus]{Apparatus}, the measurements were performed in a darkroom with the lights off and door closed in order to minimize stray photons.
+
+Data from the sensors was de-serialized and converted to CSV format with a MATLAB script, which was provided courtesy of Professor Steve Lamoreaux \cite{luengo_andres-luengoalden-andres-max-most-dangerous-4450-trio_2026}\footnote{. Following data collection, the background rate from \autoref{eq:background_rate} was subtracted from the raw counts. Propagating uncertainties at each step, the correlation metrics $E$ and the CHSH value $S$ were computed from the background-subtracted rate data using \autoref{eq:E_exp_estimator} and \autoref{eq:S_expression} respectively.
+
+\section{Results}\label{sec:results}
+
+Data for the raw and background-subtracted count rate for each of the sixteen angle pairs is given in \autoref{tab:counts}. The correlation metrics $E$ for the four primary angle pairs are given in \autoref{tab:agreement}. We ultimately calcuate the CHSH value to be $S=2.75 \pm 0.04$.
+
+\begin{table} %
+    \centering
+    \begin{tabular}{p{1.5cm}p{1.5cm}p{1.5cm}p{1.5cm}}
+\hline
+\hline
+$\theta_A$ & $\theta_B$ & $N_{\text{raw}} \ [\text{s}^{-1}]$ & $N_{\text{calib}} \ [\text{s}^{-1}]$ \\
+\hline
+$\alpha$ & $\beta$ & $1131 \pm 34$ & $994 \pm 32$ \\
+$\alpha_{\perp}$ & $\beta_{\perp}$ & $1215 \pm 35$ & $1081 \pm 33$ \\
+$\alpha$ & $\beta_{\perp}$ & $424 \pm 21$ & $286 \pm 23$ \\
+$\alpha_{\perp}$ & $\beta$ & $376 \pm 19$ & $237 \pm 22$ \\
+$\alpha$ & $\beta'$ & $382 \pm 20$ & $243 \pm 22$ \\
+$\alpha_{\perp}$ & $\beta'_{\perp}$ & $337 \pm 18$ & $199 \pm 22$ \\
+$\alpha$ & $\beta'_{\perp}$ & $1204 \pm 35$ & $1066 \pm 33$ \\
+$\alpha_{\perp}$ & $\beta'$ & $1246 \pm 35$ & $1109 \pm 33$ \\
+$\alpha'$ & $\beta$ & $1270 \pm 40$ & $1133 \pm 33$ \\
+$\alpha'_{\perp}$ & $\beta_{\perp}$ & $1270 \pm 40$ & $1131 \pm 33$ \\
+$\alpha'$ & $\beta_{\perp}$ & $313 \pm 18$ & $174 \pm 21$ \\
+$\alpha'_{\perp}$ & $\beta$ & $254 \pm 16$ & $117 \pm 20$ \\
+$\alpha'$ & $\beta'$ & $1300 \pm 40$ & $1167 \pm 34$ \\
+$\alpha'_{\perp}$ & $\beta'_{\perp}$ & $1230 \pm 35$ & $1091 \pm 33$ \\
+$\alpha'$ & $\beta'_{\perp}$ & $327 \pm 18$ & $189 \pm 22$ \\
+$\alpha'_{\perp}$ & $\beta'$ & $314 \pm 18$ & $176 \pm 21$ \\
+\hline
+\hline
+\end{tabular}
+    \caption{Results from the Bell's inequality experiment. Raw and calibrated count rates with $1\sigma$ uncertainties are shown for each of the sixteen angle pairs.}
+    \label{tab:counts}
+\end{table}
+
+\begin{table}[h]
+    \centering
+    \begin{tabular}{p{1.5cm}p{1.5cm}p{3cm}}
+\hline
+\hline
+$\theta_A$ & $\theta_B$ & $E$ \\
+\hline
+$\alpha$ & $\beta$ & $0.597 \pm 0.021$ \\ 
+$\alpha$ & $\beta'$ & $-0.662 \pm 0.021$ \\ 
+$\alpha'$ & $\beta$ & $0.772 \pm 0.021$ \\ 
+$\alpha'$ & $\beta'$ & $0.772 \pm 0.020$ \\
+\hline
+\hline
+\end{tabular}
+    \caption{Measurement of the correlation rate $E$ at each of the four measurement locations.}
+    \label{tab:agreement}
+\end{table}
+
+
+
+\section{Discussion}\label{sec:discussion}
+\subsection{Comparison with Theory}
+Our measurement of $S = 2.75 \pm 0.04$ is inconsistent with the $|S|  \le 2$ required by any hidden variables theory. This result is therefore a clear violation of Bell's inequality. Furthermore, this value falls within $95\% $ confidence bounds of the prediction $S = 2\sqrt2 \approx 2.828$ made by Copenhagen quantum mechanics, as discussed in \hyperref[subsec:theory]{Theory}. This result carries immense physical and philosophical implications: namely, that wavefunction collapse is a nonlocal process, by which physical influences can travel at effectively infinite speed across vast distances. 
+\subsection{Potential Sources of Error}
+Considering that $\rcs \approx 6.7895$ with $\boldsymbol{\theta}^\star$ from the MCMC chain, we must assume there are some sources error unaccounted for in our analysis. One likely source of error is the fact that we performed the alignment of the BBO crystal axis and the Babinet-Soliel compensator axes by eye in \hyperref[subsec:]{Theory}. If the BBO crystal axis and Babinet-Soliel compensator axes were different from the optimal values suggested in \hyperref[subsec:theory]{Theory}, we would expect an unequal population of horizontally and vertically polarized photons to be produced by the experimental apparatus, rendering our probability calculations incorrect and depressing the measured value of $S$.
+
+Additionally, we are forced to consider the potential of ``loopholes'' in our experimental apparatus that are in violation of the assumptions of Bell's inequality. Most notably, we preset the polarizer angles long before turning on the laser beam, which could plausibly constitute a local influence on the photon states \cite{kaiser_tackling_2020}. In order to rule out all influences that travel at the speed of light, the polarizer angles would have to be switched randomly at high-frequency, on the order of $ \omega \approx 1$ GHz.
+
+
+\section{Conclusions}\label{sec:conclusions}
+We have violated Bell's inequality in a tabletop experimental apparatus, providing evidence against the existence of a hidden-variable theory for quantum mechanics and reinforcing the Copenhagen interpretation of wavefunction collapse. This effort involved the generation of entangled photon pairs, which were passed through dual polarizers and measured using single-photon counting modules. By measuring coincident counts at a series of angles, we found that the correlation between polarizers, as measured by the Clauser-Horne-Shimony-Holt value $S$, is not consistent with any hidden-variable theory for quantum mechanics, and falls within $2\sigma$ of the Copenhagen prediction. 
+
+
+\section{Acknowledgements}
+All code referenced in this report is freely available in the following public GitHub repository: \href{https://github.com/andres-luengo/alden-andres-max-most-dangerous-4450-trio}{github.com/andres-luengo/alden-andres-max}.
+We would like to thank out teaching assistant Claire Laffan and Professor Charles Brown for their mentorship, and the PHYS 4450L course for granting us access and onboarding to the experimental setup. We would also like to thank Professor Steven Lamoreaux for providing the MATLAB script 
+
+\bibliographystyle{}
+\bibliography{BellsInequalityLab}
+
+% \begin{thebibliography}{99}
+
+
+
+% \bibitem{ajp_apparatus}
+% D.~Dehlinger and M.~W.~Mitchell,
+% ``Entangled photon apparatus for the undergraduate laboratory,''
+% \emph{American Journal of Physics} \textbf{70}(9), 898--902 (2002).
+% doi:10.1119/1.1498859.
+
+% \bibitem{ajp_theory}
+% D.~Dehlinger and M.~W.~Mitchell,
+% ``Entangled photons, nonlocality, and Bell inequalities in the undergraduate laboratory,''
+% \emph{American Journal of Physics} \textbf{70}(9), 903--910 (2002).
+% doi:10.1119/1.1498860.
+
+% \bibitem{bell_quantum_processor}
+% J.~Brody and R.~Avram,
+% ``Testing a Bell Inequality with a Remote Quantum Processor,''
+% \emph{The Physics Teacher} \textbf{61}(3), 218--221 (2023).
+% doi:10.1119/5.0069073.
+
+% \bibitem{bell_2014}
+% J.~Moyer,
+% ``Bell's Inequality,''
+% unpublished manuscript (2014).
+
+% \bibitem{emcee}
+% D.~Foreman-Mackey, D.~W. Hogg, D.~Lang, and J.~Goodman,
+% ``{emcee: The MCMC Hammer},''
+% \emph{Publications of the Astronomical Society of the Pacific},
+% vol.~125, no.~925, p.~306, Mar.~2013,
+% doi:~10.1086/670067.
+
+% \bibitem{interference_diffraction}
+% J.~Moyer,
+% ``Single Photon Interference and Diffraction,''
+% unpublished manuscript.
+
+% \bibitem{mermin}
+% N.~D.~Mermin,
+% ``Is the moon there when nobody looks? Reality and the quantum theory,''
+% unpublished manuscript.
+
+% \bibitem{scipy}
+% P.~Virtanen \emph{et~al.}, ``{SciPy 1.0: fundamental algorithms for scientific computing in Python},''
+% \emph{Nature Methods}, vol.~17, no.~3, pp.~261--272, Mar.~2020,
+% doi:~10.1038/s41592-019-0686-2.
+
+
+% \end{thebibliography}
+
+
+\end{document}

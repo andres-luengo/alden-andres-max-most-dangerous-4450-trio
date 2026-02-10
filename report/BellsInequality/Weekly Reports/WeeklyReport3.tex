@@ -1,0 +1,135 @@
+\documentclass[letter,scriptaddress,twocolumn, prl,showkeys]{revtex4}
+
+	\usepackage{amsmath}%,amssymb} 
+	\usepackage{makeidx}
+	\usepackage{amsfonts}
+	\usepackage[ansinew]{inputenc}
+	\usepackage[usenames,dvipsnames]{pstricks}
+	\usepackage{subfigure}
+	\usepackage{epsfig}
+	\usepackage{pst-grad} % For gradients
+	\usepackage{pst-plot} % For axes
+	\usepackage[colorlinks,hyperindex]{hyperref}
+	\hypersetup
+	{
+		colorlinks,%
+		citecolor=red,%
+		linkcolor=red,%
+		urlcolor=red,%
+	}
+
+%--- Theorem like environments ----
+	\newtheorem{theorem}{Teorema}
+	\newtheorem{corolary}{Corolário}
+	\newtheorem{prop}{Proposição}
+	\newtheorem{definition}{Definição}
+	\newtheorem{example}{Exemplo}
+	\newtheorem{exercise}{Exercício}
+	\newtheorem{lemma}{Lemma}
+
+%--- Definindo algumas frescuras.
+%\numberwithin{equation}{subsection}
+	%\numberwithin{equation}{section}
+
+	\setlength\textheight{24.5cm}
+
+% --- Comandos novos ---
+	\newcommand{\dket}[1]{\left| #1 \right)}
+	\newcommand{\E}[1]{\frac{\hbar^2 #1 ^2}{2m_0}}
+	\newcommand{\dbra}[1]{\left( #1 \right|}
+	\newcommand{\dsubmin}[1]{\left( #1 \right)}
+	\newcommand{\dbraket}[2]{\left( #1 | #2 \right)}
+	\newcommand{\dbraketm}[3]{\left( #1 \left| #2 \right| #3 \right)}
+	\newcommand{\ket}[1]{\left| #1 \right\rangle}
+	\newcommand{\bra}[1]{\left\langle #1 \right|}
+	\newcommand{\submin}[1]{\left\langle #1 \right\rangle}
+	\newcommand{\braket}[2]{\left\langle #1 \right. \left| #2 \right\rangle}
+	\newcommand{\braketm}[3]{\langle #1 \mid #2 \mid #3 \rangle}
+	\newcommand{\pinterno}[2]{\left( #1 , #2 \right)}
+	\newcommand{\comut}[2]{\left[ #1 , #2 \right]} % THE COMUTATOR
+	\newcommand{\seitz}[2]{\left\{ \, #1 \mid  #2 \, \right\}}
+	\newcommand{\rep}{\emph{rep} }
+	\newcommand{\irep}{\emph{irrep} }
+	\newcommand{\ordem}[1]{\mid #1 \mid}
+	\newcommand{\op}[1]{\mathbb #1 }
+	\newcommand{\group}[1]{\mathcal #1 }
+	\newcommand{\vet}[1]{\mathbf #1 }
+	\newcommand{\argu}[1]{\left( #1 \right)}
+	\newcommand{\kp}{\vet{k}\cdot\vet{p}}
+	\newcommand{\degree}{^\circ}
+\makeindex
+
+%--------------------------------------------------------
+\begin{document}
+
+\title{Bell's Inequality Weekly Lab Report 3}
+
+\author{Andr\'{e}s Luengo} 
+\email{andres.luengo@yale.edu}
+\author{Max Watzky} 
+\email{max.watzky@yale.edu}
+\author{Alden Yorba}
+\email{alden.yorba@yale.edu}
+
+\affiliation{Yale University \\ New Haven, CT 06511}
+
+\date{\today}
+
+\begin{abstract}
+  We present updates for week 3 of the Bell's Inequality experiment.
+\end{abstract}
+
+%\keywords{}
+
+\maketitle
+
+\section{Tuesday, February 3rd}
+
+Continued working on the writeup of the informal lab report outside of the lab classroom. Data collection, calibration and measurement analysis have been completed, and the informal report is well underway. Continued writing the informal report. Progress was made in the following categories:
+
+\subsection{Calibration}
+
+The section describing device calibration was significantly expanded so as to describe our procedure for finding both $\Delta$ and $\tau$, as well as the parameter $\phi_l$ introduced by the Soleil-Babinet compensator. 
+
+The constants $\Delta$ and $\tau$ affect how the detector determines coincidences. If a photon is recorded at detector $B$ at $\tau \pm \Delta / 2$ nanoseconds after a photon at detector $A$, it is counted as a coincidence.
+
+The constant $\phi_l$ introduced by tuning the micrometer screw on the Soleil-Babinet compensator adjusts $\ket{\psi}_{em}$ so as to eliminate the phase factor introduced by the birefringence of the BBO Crystal plates. As discussed in the lab guide, we adjusted the screw until $N(0^\circ, 0^\circ)=N(90^\circ, 90^\circ)$ by the following procedure:
+
+\begin{enumerate}
+    \item Test $N(90 \degree, 90 \degree) - N(0\degree, 0\degree)$
+    \item Turn the micrometer screw by an arbitrary amount in a certain direction
+    \item Test $N(90 \degree, 90 \degree) - N(0\degree, 0\degree)$
+    \item If the quantity has decreased, continue turning micrometer screw in the same direction, else turn the screw past the starting point, and in the other direction
+    \item Measure, difference again, if it decreased, continue turning in the same direction, else adjust the screw halfway between the current position and the last position.
+    \item repeat until $N(0^\circ, 0^\circ) \approx N(90^\circ, 90^\circ)$
+\end{enumerate}
+
+Proceeding in this way, we were able to adjust the micrometer screw controlling the compensator until $\phi_l \approx 0$ so that $\ket{\psi}_{em}=\frac{1}{\sqrt{2}} \left( \ket{V}_s\ket{V}_i+\ket{H}_s\ket{H}_i\right)$.
+
+The calibration for the BBO crystal angle proceeded in an identical manner, adjusting its orientation until $N(45\degree, 45\degree)\approx N(-45 \degree, -45\degree)$.
+
+
+\section{Thursday, February 5th}
+
+Today we met with Prof. Charles Brown to discuss writeup of the weekly report since data collection has finished, and none of the anticipated work involved in the writeup requires being in the lab environment. 
+
+Citations were integrated into our report. \textit{Theory} draws heavily from the paper by Dehlinger about testing Bell Inequalities in an undergraduate laboratory \cite{dehlinger_entangled_2002-1}. The theory section was expanded today to describe the rotated vertical and horizontal measurement bases 
+\begin{align}
+    \ket{V_\alpha} = \cos{\alpha}\ket{V}-\sin{\alpha}\ket{H} \\
+    \ket{H_\alpha} = \sin{\alpha}\ket{V}+\cos{\alpha}\ket{H}
+\end{align}
+To better explain how the probability of coincidence is calculated. Also, the Matlab script containing the code for data collection was copied and uploaded our GitHub repository. 
+
+\subsection{}
+
+\section{Acknowledgments}
+
+\begin{acknowledgments}
+All code referenced in this report is freely available in the following public GitHub repository: \hyperlink{https://github.com/andres-luengo/alden-andres-max-most-dangerous-4450-trio}{github.com/andres-luengo/alden-andres-max}.
+We would like to thank TA Claire Laffan and Professor Charles Brown for their mentorship, and the PHYS 4450L course for granting us access and on-boarding to the experimental setup.
+\end{acknowledgments}
+
+\bibliographystyle{plain}
+\bibliography{Phys4450/BellsInequality/BellsInequalityLab}
+
+\end{document}

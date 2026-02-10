@@ -1,0 +1,154 @@
+\documentclass[letter,scriptaddress,twocolumn, prl,showkeys]{revtex4}
+
+	\usepackage{amsmath}%,amssymb} 
+	\usepackage{makeidx}
+	\usepackage{amsfonts}
+	\usepackage[ansinew]{inputenc}
+	\usepackage[usenames,dvipsnames]{pstricks}
+	\usepackage{subfigure}
+	\usepackage{epsfig}
+	\usepackage{pst-grad} % For gradients
+	\usepackage{pst-plot} % For axes
+	\usepackage[colorlinks,hyperindex]{hyperref}
+	\hypersetup
+	{
+		colorlinks,%
+		citecolor=red,%
+		linkcolor=red,%
+		urlcolor=red,%
+	}
+
+%--- Theorem like environments ----
+	\newtheorem{theorem}{Teorema}
+	\newtheorem{corolary}{Corolário}
+	\newtheorem{prop}{Proposição}
+	\newtheorem{definition}{Definição}
+	\newtheorem{example}{Exemplo}
+	\newtheorem{exercise}{Exercício}
+	\newtheorem{lemma}{Lemma}
+
+%--- Definindo algumas frescuras.
+%\numberwithin{equation}{subsection}
+	%\numberwithin{equation}{section}
+
+	\setlength\textheight{24.5cm}
+
+% --- Comandos novos ---
+	\newcommand{\dket}[1]{\left| #1 \right)}
+	\newcommand{\E}[1]{\frac{\hbar^2 #1 ^2}{2m_0}}
+	\newcommand{\dbra}[1]{\left( #1 \right|}
+	\newcommand{\dsubmin}[1]{\left( #1 \right)}
+	\newcommand{\dbraket}[2]{\left( #1 | #2 \right)}
+	\newcommand{\dbraketm}[3]{\left( #1 \left| #2 \right| #3 \right)}
+	\newcommand{\ket}[1]{\left| #1 \right\rangle}
+	\newcommand{\bra}[1]{\left\langle #1 \right|}
+	\newcommand{\submin}[1]{\left\langle #1 \right\rangle}
+	\newcommand{\braket}[2]{\left\langle #1 \right. \left| #2 \right\rangle}
+	\newcommand{\braketm}[3]{\langle #1 \mid #2 \mid #3 \rangle}
+	\newcommand{\pinterno}[2]{\left( #1 , #2 \right)}
+	\newcommand{\comut}[2]{\left[ #1 , #2 \right]} % THE COMUTATOR
+	\newcommand{\seitz}[2]{\left\{ \, #1 \mid  #2 \, \right\}}
+	\newcommand{\rep}{\emph{rep} }
+	\newcommand{\irep}{\emph{irrep} }
+	\newcommand{\ordem}[1]{\mid #1 \mid}
+	\newcommand{\op}[1]{\mathbb #1 }
+	\newcommand{\group}[1]{\mathcal #1 }
+	\newcommand{\vet}[1]{\mathbf #1 }
+	\newcommand{\argu}[1]{\left( #1 \right)}
+	\newcommand{\kp}{\vet{k}\cdot\vet{p}}
+	
+\makeindex
+
+%--------------------------------------------------------
+\begin{document}
+
+\title{Bell's Inequality Weekly Lab Report 2}
+
+\author{Andr\'{e}s Luengo} \\
+\email{andres.luengo@yale.edu}
+\author{Max Watzky} \\ 
+\email{max.watzky@yale.edu}
+\author{Alden Yorba} \\ 
+\email{alden.yorba@yale.edu}
+
+\affiliation{Yale University \\ New Haven, CT 06511}
+
+\date{\today}
+
+\begin{abstract}
+  We present updates for week 2 of the Bell's Inequality experiment, including descriptions of experiments and data analysis.
+\end{abstract}
+
+%\keywords{}
+
+\maketitle
+
+\section{Tuesday, January 27th}
+
+We began the lab session by meeting with our TA, Claire Laffan, and discussed our confusion about the uncertainties of the count measurements in the polarization experiment. We discovered an error in our calculation of $\chi^2$, which reduced its value from $\approx 59$ to $\approx 7$. We decided that it was unnecessary to repeat the experiment, and rescaled all the uncertainties by $\sqrt{\chi^2}$ to reflect the fact that our uncertainties are more than likely more than just the $\sqrt N$ Poisson statistics. We then re-ran our fitting procedure with the new uncertainties using Markov Chain Monte Carlo (MCMC). The best-fitting curve, as well as 100 samples from the posterior distribution of the parameters, are shown in \autoref{fig:countrate}. The fit allowed for the extraction of the background count rate (when both polarizers were at a 90$^\circ$ angle relative to each other, as $B = 138 \pm 6$ counts/sec. Finally, we re-ran our analysis of the Bell's inequality data using the new parameters, and determined the value of $S$ to be:
+\begin{equation}
+    S = 2.75 \pm 0.04
+\end{equation}
+        
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=1.0\linewidth]{Phys4450/BellsInequality/figs/residual_plot.png}
+    \caption{Correlation data overplotted with 100 models randomly sampled from MCMC chain. Measurement uncertainties are the Poisson noise $\sqrt{N}$ multiplied by $\sqrt{\chi^2}$ from the original fit. Residuals from the best-fit model are shown in the bottom panel.}
+    \label{fig:countrate}
+\end{figure}
+
+which is within $2 \sigma$ of the expected value $S = 2\sqrt{2}$. 
+
+After completing the data analysis, we began compiling data and figures into GitHub, and set up our Overleaf environment. We then set up templates for weekly reports as well as the draft, informal, and formal reports, and began writing.
+
+\begin{figure}
+    \centering
+    \includegraphics[width=1\linewidth]{Phys4450/BellsInequality/figs/mcmc_corner_plot.png}
+    \label{fig:mcmc_crater_plot}
+    \caption{Corner plot showing the posterior distribution of model parameters, demonstrating uncertainties and covariances.}
+\end{figure}
+
+\section{Thursday, January 29th}
+By the start of this lab meeting, we had more or less completed all of our calibration, data collection, calculations, and model fitting. Therefore, we began the process of writing our informal and formal reports. We completed the process of collating all of our figures in Overleaf, and began writing figure captions, generating data tables, citing sources in the bibliography, and formatting equations. Additionally, we reviewed the theory document and lab guide, and confirmed that we understood the background of the experiment as well as we could. Then, we started writing various sections of the paper. Max worked on the abstract and introduction, Alden worked on the introduction and results, and Andres worked on the apparatus and methods. We took great care to ensure the accuracy of our statements, in light of the conceptual difficulty of the topic, and continually referred back to the lab resources as we drafted. We ultimately wrote roughly three pages worth of content, making excellent progress towards the final draft.
+\section{Acknowledgements}
+\begin{acknowledgements}
+All code referenced in this report is freely available in the following public GitHub repository: \hyperlink{https://github.com/andres-luengo/alden-andres-max-most-dangerous-4450-trio}{github.com/andres-luengo/alden-andres-max}.
+We would like to thank TA Claire Laffan and Professor Charles Brown for their mentorship, and the PHYS 4450L course for granting us access and onboarding to the experimental setup.
+\end{acknowledgements}
+
+\begin{thebibliography}{}
+
+\bibitem{dehlinger2002apparatus}
+D.~Dehlinger and M.~W.~Mitchell,
+``Entangled photon apparatus for the undergraduate laboratory,''
+\emph{American Journal of Physics}, vol.~70, no.~9, pp.~898--902, 2002.
+doi:10.1119/1.1498859.
+
+\bibitem{dehlinger2002bell}
+D.~Dehlinger and M.~W.~Mitchell,
+``Entangled photons, nonlocality, and Bell inequalities in the undergraduate laboratory,''
+\emph{American Journal of Physics}, vol.~70, no.~9, pp.~903--910, 2002.
+doi:10.1119/1.1498860.
+
+\bibitem{brody2023remote}
+J.~Brody and R.~Avram,
+``Testing a Bell Inequality with a Remote Quantum Processor,''
+\emph{The Physics Teacher}, vol.~61, no.~3, pp.~218--221, 2023.
+doi:10.1119/5.0069073.
+
+\bibitem{moyer2014bell}
+J.~Moyer,
+``Bell’s Inequality,''
+2014.
+
+\bibitem{moyer_singlephoton}
+J.~Moyer,
+``Single Photon Interference and Diffraction.''
+
+\bibitem{mermin_moon}
+N.~D.~Mermin,
+``Is the moon there when nobody looks? Reality and the quantum theory.''
+
+\end{thebibliography}
+
+\end{document}
