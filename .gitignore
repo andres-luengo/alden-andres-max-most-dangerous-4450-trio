@@ -1,2 +1,2 @@
-data/**/*.csv
-data/**/*.CSV
+rb-spectroscopy/data/**/*.csv
+rb-spectroscopy/data/**/*.CSV
