@@ -1,2 +1,4 @@
 rb-spectroscopy/data/**/*.csv
 rb-spectroscopy/data/**/*.CSV
+
+__pycache__
