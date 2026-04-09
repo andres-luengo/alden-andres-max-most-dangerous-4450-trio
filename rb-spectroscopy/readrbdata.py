@@ -25,11 +25,15 @@ def load(sat: bool, mag: bool) -> TrialData:
 
     read_csv = lambda name, col : pd.read_csv(root + name, usecols=[col], skiprows=15)[col].values
 
+    signal_gen = read_csv("signal_gen.CSV", "CH1")
+    low = np.argmin(signal_gen)
+    high = np.argmax(signal_gen)
+
     return TrialData(
-        read_csv("signal_gen.CSV", "TIME"),
-        read_csv("signal_gen.CSV", "CH1"),
-        read_csv("fabry_perot.CSV", "CH2"),
-        read_csv("data.CSV", "CH4")
+        read_csv("signal_gen.CSV", "TIME")[low:high],
+        signal_gen[low:high],
+        read_csv("fabry_perot.CSV", "CH2")[low:high],
+        read_csv("data.CSV", "CH4")[low:high]
     )
 
 def main():
