@@ -1,15 +1,19 @@
 import numpy as np
 
-class TimeFrequencyConverter:
-    def __init__(self, sat: bool, mag: bool):
-        path = "data/fabry_perot_fits/_"
-        
-        if not sat: path += "un"
-        path += "saturated/_"
+def transform(times: np.ndarray, sat: bool, mag: bool)
+    path = "data/fabry_perot_fits/_"
 
-        if not mag: path += "no_"
-        path += "magnet/"
+    if not sat: path += "un"
+    path += "saturated/_"
 
-        self._th = np.load(path + "theta.npy")
-        self._cov = np.load(path + "X.npy")
+    if not mag: path += "no_"
+    path += "magnet/"
+
+    th = np.load(path + "theta.npy")
+    coeff_errors = np.sqrt(np.diag(np.load(path + "X.npy")))
+
+    poly = np.polynomial.Polynomial(th)
+
+    #TODO: handle uncertainties. i think there's a matrix multiplication here i am missing
     
+    return poly(times), 
