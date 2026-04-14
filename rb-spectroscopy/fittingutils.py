@@ -39,6 +39,7 @@ class _Gaussian:
 Gaussian = _Gaussian()
 del _Gaussian
 
+# i guess the proper pattern here would've been to make fittingutils a folder, and then lorentzian.py and gaussian.py but it's ok...
 class _Lorentzian:
     def lorentzian(self, x, center, gamma, amplitude, baseline):
         denom = 1 + ((x - center) / gamma)**2
@@ -53,7 +54,7 @@ class _Lorentzian:
     """
     The full-width, half max
     """
-    def guess_gamma(self, x, y, baseline=np.nan):
+    def guess_gamma(self, x, y, baseline=0.):
         return estimate_fwhm(x, y, baseline)/2.
     
 
