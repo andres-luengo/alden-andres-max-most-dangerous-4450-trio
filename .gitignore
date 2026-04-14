@@ -1,4 +1,7 @@
 rb-spectroscopy/data/**/*.csv
 rb-spectroscopy/data/**/*.CSV
-
+rb-spectroscopy/_*
+rb-spectroscopy/*.png
+rb-spectroscopy/.ipynb_checkpoints
+rb-spectroscopy/data
 __pycache__
