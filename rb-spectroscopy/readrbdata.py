@@ -4,6 +4,8 @@ The idea of this file is to standardize how we read the data in. (i.e. so we all
 
 from dataclasses import dataclass
 
+from fabryperotcalibration import transform
+
 import numpy as np
 import pandas as pd
 
@@ -13,6 +15,7 @@ class TrialData():
     gen: np.ndarray
     fp: np.ndarray
     signal: np.ndarray
+    frequency: np.ndarray
 
 def load(sat: bool, mag: bool) -> TrialData:
     root = "data/"
@@ -29,11 +32,14 @@ def load(sat: bool, mag: bool) -> TrialData:
     low = np.argmin(signal_gen)
     high = np.argmax(signal_gen)
 
+    time = read_csv("signal_gen.CSV", "TIME")[low:high]
+
     return TrialData(
-        read_csv("signal_gen.CSV", "TIME")[low:high],
+        time,
         signal_gen[low:high],
         read_csv("fabry_perot.CSV", "CH2")[low:high],
-        read_csv("data.CSV", "CH4")[low:high]
+        read_csv("data.CSV", "CH4")[low:high],
+        transform(time, sat, mag)
     )
 
 def main():

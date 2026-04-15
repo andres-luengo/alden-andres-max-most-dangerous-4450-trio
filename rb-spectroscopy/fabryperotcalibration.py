@@ -1,6 +1,6 @@
 import numpy as np
 
-def transform(times: np.ndarray, sat: bool, mag: bool)
+def transform(times: np.ndarray, sat: bool, mag: bool):
     path = "data/fabry_perot_fits/_"
 
     if not sat: path += "un"
@@ -10,10 +10,10 @@ def transform(times: np.ndarray, sat: bool, mag: bool)
     path += "magnet/"
 
     th = np.load(path + "theta.npy")
-    coeff_errors = np.sqrt(np.diag(np.load(path + "X.npy")))
+    coeff_variances = np.diag(np.load(path + "X.npy"))
 
     poly = np.polynomial.Polynomial(th)
 
     #TODO: handle uncertainties. i think there's a matrix multiplication here i am missing
     
-    return poly(times), 
+    return poly(times)
