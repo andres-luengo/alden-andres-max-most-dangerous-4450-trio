@@ -6,4 +6,7 @@ rb-spectroscopy/.ipynb_checkpoints
 rb-spectroscopy/data
 rb-spectroscopy/fabry_perot_fits
 
+*.png
+
 __pycache__
+
