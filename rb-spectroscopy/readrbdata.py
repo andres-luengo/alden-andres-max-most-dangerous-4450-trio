@@ -16,6 +16,7 @@ class TrialData():
     fp: np.ndarray
     signal: np.ndarray
     frequency: np.ndarray
+    u_frequency: np.ndarray
 
 def load(sat: bool, mag: bool) -> TrialData:
     root = "data/"
@@ -39,7 +40,7 @@ def load(sat: bool, mag: bool) -> TrialData:
         signal_gen[low:high],
         read_csv("fabry_perot.CSV", "CH2")[low:high],
         read_csv("data.CSV", "CH4")[low:high],
-        transform(time, sat, mag)
+        *transform(time, sat, mag)
     )
 
 def main():

@@ -10,10 +10,20 @@ def transform(times: np.ndarray, sat: bool, mag: bool):
     path += "magnet/"
 
     th = np.load(path + "theta.npy")
-    coeff_variances = np.diag(np.load(path + "X.npy"))
+    cov = np.load(path + "X.npy")
+
+    print(f"th =\n{th}")
+    print(f"cov =\n{cov}")
 
     poly = np.polynomial.Polynomial(th)
+    freqs = poly(times)
 
-    #TODO: handle uncertainties. i think there's a matrix multiplication here i am missing
+    param_samples = np.random.multivariate_normal(th, cov, 1024)
+    print(f"{param_samples.shape = }")
+    model_samples = np.empty((param_samples.shape[0], freqs.size))
+    for i in range(model_samples.shape[0]):
+        model_samples[i] = np.polynomial.Polynomial(param_samples[i])(times)
+    print(f"{model_samples.shape = }")
+    u_freqs = np.std(model_samples, axis=0)
     
-    return poly(times)
+    return freqs, u_freqs
